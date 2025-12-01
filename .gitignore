@@ -1,0 +1,98 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment Variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# API Keys (Security)
+*.key
+config.json
+secrets.json
+
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# Dependency directories
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# parcel-bundler cache (https://parceljs.org/)
+.cache
+.parcel-cache
+
+# VS Code
+.vscode/
+!.vscode/extensions.json
+
+# OS Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+.tmp/
+
+# Build outputs
+dist/
+build/
+
+# Netlify
+.netlify/
+functions-serve/
+
+# Training data backup (keep original)
+training-data-backup.json
+dataset-raw/
+
+# Demo files (large)
+demo-video.mp4
+*.mov
+*.avi
+
+# Local development
+*.local
+local-*
+
+# Editor files
+*.swp
+*.swo
+*~
+
+# Testing
+test-results/
+coverage/
