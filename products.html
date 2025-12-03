@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelola Produk - AI UMKM</title>
+    <meta name="description" content="Kelola data produk UMKM untuk promosi AI">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="stylesheet" href="src/css/dashboard.css">
+    <link rel="stylesheet" href="src/css/products.css">
+    <link rel="stylesheet" href="src/css/fontawesome/css/all.min.css">
+    
+    <!-- Font Inter & Poppins dari Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h1 class="sidebar-logo">
+                <i class="fas fa-robot"></i> AI UMKM
+            </h1>
+            <button class="sidebar-close" id="sidebar-close"><i class="fas fa-times"></i></button>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="index.html" class="sidebar-link">
+                <span class="sidebar-icon"><i class="fas fa-home"></i></span>
+                <span class="sidebar-text">Home</span>
+            </a>
+            <a href="dashboard.html" class="sidebar-link">
+                <span class="sidebar-icon"><i class="fas fa-chart-bar"></i></span>
+                <span class="sidebar-text">Dashboard</span>
+            </a>
+            <a href="products.html" class="sidebar-link active">
+                <span class="sidebar-icon"><i class="fas fa-box"></i></span>
+                <span class="sidebar-text">Produk</span>
+            </a>
+            <a href="ai-tools.html" class="sidebar-link">
+                <span class="sidebar-icon"><i class="fas fa-magic"></i></span>
+                <span class="sidebar-text">AI Tools</span>
+            </a>
+            <a href="ai-tools.html#ideas" class="sidebar-link sub">
+                <span class="sidebar-icon"><i class="fas fa-lightbulb"></i></span>
+                <span class="sidebar-text">Ide Konten</span>
+            </a>
+            <a href="ai-tools.html#caption" class="sidebar-link sub">
+                <span class="sidebar-icon"><i class="fas fa-pen-fancy"></i></span>
+                <span class="sidebar-text">Caption AI</span>
+            </a>
+            <a href="ai-tools.html#poster" class="sidebar-link sub">
+                <span class="sidebar-icon"><i class="fas fa-palette"></i></span>
+                <span class="sidebar-text">Design Poster</span>
+            </a>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <div class="user-avatar"><i class="fas fa-user"></i></div>
+                <div class="user-details">
+                    <p class="user-name">Demo User</p>
+                    <p class="user-role">UMKM Owner</p>
+                </div>
+            </div>
+            <button class="btn-logout">Logout</button>
+        </div>
+    </aside>
+
+    <!-- Mobile Overlay -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Main Content Area -->
+    <div class="main-wrapper">
+        
+        <!-- Top Header (Mobile) -->
+        <header class="top-header">
+            <button class="sidebar-toggle" id="sidebar-toggle"><i class="fas fa-bars"></i></button>
+            <h2 class="page-title"><i class="fas fa-box"></i> Kelola Produk</h2>
+            <div class="header-actions">
+                <button class="btn btn-small btn-primary" id="add-product-mobile">
+                    <i class="fas fa-plus"></i> Tambah
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="dashboard-content" id="app">
+            
+            <!-- Products Section -->
+            <section class="products-section">
+                <div class="section-header">
+                    <h1 class="page-title"><i class="fas fa-box"></i> Kelola Produk</h1>
+                    <p class="page-description">Tambah, edit, dan kelola produk UMKM Anda untuk promosi AI</p>
+                </div>
+
+                <!-- Action Bar -->
+                <div class="action-bar">
+                    <button class="btn btn-primary" id="add-product-btn">
+                        <i class="fas fa-plus"></i> Tambah Produk Baru
+                    </button>
+                </div>
+
+                <!-- Form Container (Hidden by default) -->
+                <div class="form-container hidden" id="product-form-container">
+                    <div class="form-card">
+                        <div class="form-header">
+                            <h3 id="form-title">Tambah Produk Baru</h3>
+                            <button class="btn-close" id="close-form"><i class="fas fa-times"></i></button>
+                        </div>
+
+                        <form id="product-form">
+                            <div class="form-group">
+                                <label for="product-name">Nama Produk *</label>
+                                <input type="text" id="product-name" class="form-input" required placeholder="Contoh: Kopi Arabica Premium">
+                                <small class="form-hint">Nama produk yang menarik dan mudah diingat</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="product-price">Harga *</label>
+                                <input type="number" id="product-price" class="form-input" required placeholder="25000" min="0">
+                                <small class="form-hint">Harga dalam Rupiah (tanpa titik atau koma)</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="product-category">Kategori *</label>
+                                <select id="product-category" class="form-select" required>
+                                    <option value="">Pilih Kategori</option>
+                                    <option value="makanan">Makanan</option>
+                                    <option value="minuman">Minuman</option>
+                                    <option value="fashion">Fashion</option>
+                                    <option value="kerajinan">Kerajinan</option>
+                                    <option value="jasa">Jasa</option>
+                                    <option value="elektronik">Elektronik</option>
+                                    <option value="kesehatan">Kesehatan & Kecantikan</option>
+                                    <option value="lainnya">Lainnya</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="product-description">Deskripsi Produk</label>
+                                <textarea id="product-description" class="form-textarea" placeholder="Ceritakan detail produk Anda: bahan, keunggulan, cara pembuatan, dll."></textarea>
+                                <small class="form-hint">Deskripsi akan membantu AI membuat konten yang lebih akurat</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="product-image">URL Gambar (Opsional)</label>
+                                <input type="url" id="product-image" class="form-input" placeholder="https://example.com/gambar-produk.jpg">
+                                <small class="form-hint">Link gambar produk untuk ditampilkan di kartu produk</small>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary" id="cancel-form">Batal</button>
+                                <button type="submit" class="btn btn-primary" id="save-product">
+                                    <span id="save-text">Simpan Produk</span>
+                                    <div class="btn-spinner hidden" id="save-spinner"></div>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Products Container -->
+                <div class="products-container">
+                    <h3 class="section-subtitle" id="products-title">Produk Anda</h3>
+                    
+                    <!-- Empty State -->
+                    <div class="empty-state" id="empty-state">
+                        <div class="empty-icon"><i class="fas fa-box-open"></i></div>
+                        <h3>Belum Ada Produk</h3>
+                        <p>Tambahkan produk pertama Anda untuk mulai membuat konten promosi dengan AI</p>
+                        <button class="btn btn-primary" onclick="document.getElementById('add-product-btn').click()">
+                            <i class="fas fa-plus"></i> Tambah Produk Pertama
+                        </button>
+                    </div>
+
+                    <!-- Products Grid -->
+                    <div class="products-grid hidden" id="products-grid">
+                        <!-- Products akan di-render oleh JavaScript -->
+                    </div>
+                </div>
+
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast hidden">
+        <p id="toast-message">Pesan berhasil disalin!</p>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="src/js/utils.js"></script>
+    <script src="src/js/ai-products.js"></script>
+
+    <script>
+        // Fungsi sederhana untuk toggle sidebar (mobile)
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+
+        // Event listeners untuk sidebar dan products
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebarToggle = document.getElementById('sidebar-toggle');
+            const sidebarClose = document.getElementById('sidebar-close');
+            const sidebarOverlay = document.getElementById('sidebar-overlay');
+            const addProductMobile = document.getElementById('add-product-mobile');
+            const addProductBtn = document.getElementById('add-product-btn');
+
+            // Sidebar events
+            sidebarToggle.addEventListener('click', toggleSidebar);
+            sidebarClose.addEventListener('click', toggleSidebar);
+            sidebarOverlay.addEventListener('click', toggleSidebar);
+
+            // Mobile add product button
+            addProductMobile.addEventListener('click', function() {
+                addProductBtn.click();
+            });
+
+            // Initialize products page
+            if (typeof initializeProductsPage === 'function') {
+                initializeProductsPage();
+            }
+        });
+    </script>
+
+</body>
+</html>
