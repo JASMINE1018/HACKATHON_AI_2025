@@ -30,11 +30,11 @@
                 <a href="#/caption" class="nav-link">Caption</a>
                 <a href="#/poster" class="nav-link">Poster</a>
                 <a href="#/produk" class="nav-link">Produk</a>
-                <button id="loginBtn" class="btn btn-secondary" style="margin-left:8px;">Masuk</button>
+                <a href="#/login" id="loginBtn" class="btn btn-secondary" style="margin-left:8px;">Masuk</a>
             </div>
         </nav>
         <div class="header-content">
-            <h1 class="logo"><span class="span">M</span>ARKET WHISPHER <span class="span">AI</span></h1>
+            <h1 class="logo"><span class="span">U</span>MKN <span class="span">AI</span></h1>
         </div>
     </header>
 
@@ -48,41 +48,14 @@
         <p id="toast-message">Pesan berhasil disalin!</p>
     </div>
 
-    <!-- AUTH MODAL -->
-    <div id="authModal" class="auth-modal hidden" role="dialog" aria-modal="true" aria-labelledby="authTitle">
-        <div class="auth-panel">
-            <button id="authClose" class="auth-close" aria-label="Tutup">×</button>
-            <h3 id="authTitle">Masuk ke Market Whispher AI</h3>
-
-            <div id="authForms">
-                <form id="loginForm" class="auth-form">
-                    <label for="loginEmail">Email</label>
-                    <input id="loginEmail" type="email" required>
-                    <label for="loginPassword">Kata sandi</label>
-                    <input id="loginPassword" type="password" required>
-                    <button type="submit" class="btn btn-primary">Masuk</button>
-                    <p class="muted">Belum punya akun? <button id="showSignup" class="link-like">Daftar</button></p>
-                </form>
-
-                <form id="signupForm" class="auth-form hidden">
-                    <label for="signupName">Nama</label>
-                    <input id="signupName" type="text" required>
-                    <label for="signupEmail">Email</label>
-                    <input id="signupEmail" type="email" required>
-                    <label for="signupPassword">Kata sandi</label>
-                    <input id="signupPassword" type="password" required>
-                    <button type="submit" class="btn btn-primary">Daftar</button>
-                    <p class="muted">Sudah punya akun? <button id="showLogin" class="link-like">Masuk</button></p>
-                </form>
-            </div>
-        </div>
-    </div>
+    <!-- Auth handled on separate login page (#/login) -->
 
     <!-- JavaScript -->
     <script src="src/js/utils.js"></script>
     <script src="src/js/home.js"></script>
     <script src="js/pages.js"></script>
     <script src="src/js/auth.js"></script>
+    <script src="src/js/products.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

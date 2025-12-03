@@ -69,8 +69,8 @@ function handleRoute() {
   // Protect some routes (demo client-side protection)
   const protectedRoutes = ['#/produk'];
   if (protectedRoutes.includes(hash) && window.auth && !window.auth.isLoggedIn()) {
-    // jika belum login, tampilkan modal login dan berhenti
-    window.auth.showLogin();
+    // jika belum login, arahkan ke halaman login
+    window.location.hash = '#/login';
     return;
   }
 
@@ -82,6 +82,18 @@ function handleRoute() {
     app.innerHTML = loadCaption();
   } else if (hash === '#/poster') {
     app.innerHTML = loadPoster();
+  } else if (hash === '#/produk' || hash === '#/products') {
+    // products is a protected route; if user is logged in, render products
+    app.innerHTML = loadProducts();
+    if (window.products && typeof window.products.init === 'function') {
+      window.products.init();
+    }
+  } else if (hash === '#/login') {
+    app.innerHTML = loadLogin();
+    if (window.auth && typeof window.auth.init === 'function') {
+      // bind events for forms on the injected login page
+      window.auth.init();
+    }
   } else {
     app.innerHTML = loadHome(); // Default ke home
   }

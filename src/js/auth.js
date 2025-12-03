@@ -126,7 +126,10 @@
     const showSignupBtn = $id('showSignup');
     const showLoginBtn = $id('showLogin');
 
-    if (loginBtn) loginBtn.addEventListener('click', (e)=>{ e.preventDefault(); showLogin(); });
+    // only attach modal-trigger behavior if the login control is a button element
+    if (loginBtn && loginBtn.tagName && loginBtn.tagName.toLowerCase() === 'button') {
+      loginBtn.addEventListener('click', (e)=>{ e.preventDefault(); showLogin(); });
+    }
     if (authClose) authClose.addEventListener('click', (e)=>{ e.preventDefault(); hideModal(); });
     if (showSignupBtn) showSignupBtn.addEventListener('click', (e)=>{ e.preventDefault(); showSignup(); });
     if (showLoginBtn) showLoginBtn.addEventListener('click', (e)=>{ e.preventDefault(); showLogin(); });
@@ -167,10 +170,13 @@
       if (e.key === 'Escape') hideModal();
     });
 
-    // click outside to close
-    document.getElementById('authModal').addEventListener('click', (e)=>{
-      if (e.target === document.getElementById('authModal')) hideModal();
-    });
+    // click outside to close (only if modal exists)
+    const _authModalEl = document.getElementById('authModal');
+    if (_authModalEl) {
+      _authModalEl.addEventListener('click', (e)=>{
+        if (e.target === _authModalEl) hideModal();
+      });
+    }
   }
 
   // Public API

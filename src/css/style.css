@@ -172,7 +172,7 @@ body {
     /* scrolled state for header: blur page content behind header while keeping header color */
     .header.scrolled {
         /* slightly more opaque to keep color readable */
-        background: linear-gradient(135deg, rgba(11,115,80,0.88) 0%, rgba(0,59,89,0.88) 100%);
+        background: linear-gradient(135deg, #0b7350e0 0%, rgba(0,59,89,0.88) 100%);
         -webkit-backdrop-filter: blur(10px);
         backdrop-filter: blur(10px);
         box-shadow: 0 8px 24px rgba(2,6,23,0.12);
@@ -208,10 +208,35 @@ body {
    HERO SECTION
    ======================================== */
 .hero {
-    /* background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%); */
-    background: linear-gradient(135deg, #111827 0%, #111827 100%);
+    background: 
+        linear-gradient(135deg, rgba(17, 24, 39, 0.80) 0%, rgba(17, 24, 39, 0.80) 100%),
+        url('../css/marketing.png') center/cover no-repeat,
+        url('../css/marketing-1.png') center/cover no-repeat;
+    background-attachment: fixed, scroll, scroll;
+    animation: slideImageRight 25s linear infinite;
     padding: 40px 20px;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animasi slide kanan otomatis dengan 2 gambar */
+@keyframes slideImageRight {
+    0% {
+        background-position: 0% center, -400% center, 400% center;
+    }
+    25% {
+        background-position: 0% center, -200% center, 200% center;
+    }
+    50% {
+        background-position: 0% center, 0% center, 0% center;
+    }
+    75% {
+        background-position: 0% center, 200% center, -200% center;
+    }
+    100% {
+        background-position: 0% center, 400% center, -400% center;
+    }
 }
 
 .hero-content {
@@ -230,7 +255,7 @@ body {
 
 .hero-subtitle {
     font-size: 16px;
-    color: #6b7280;
+    color: #939cae;
     margin-bottom: 24px;
     line-height: 1.6;
 }
