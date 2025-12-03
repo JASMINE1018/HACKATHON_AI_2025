@@ -32,6 +32,22 @@ function initHamburger() {
   });
 }
 
+// Add blur / scrolled state to header when user scrolls
+function initHeaderBlur() {
+  const header = document.querySelector('.header');
+  if (!header) return;
+  const threshold = 12; // px
+  function onScroll() {
+    if (window.scrollY > threshold) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  }
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+}
+
 // Router - Handle hash routes
 function handleRoute() {
   const hash = window.location.hash || '#/';
@@ -50,6 +66,14 @@ function handleRoute() {
   }
 
   // Route handling
+  // Protect some routes (demo client-side protection)
+  const protectedRoutes = ['#/produk'];
+  if (protectedRoutes.includes(hash) && window.auth && !window.auth.isLoggedIn()) {
+    // jika belum login, tampilkan modal login dan berhenti
+    window.auth.showLogin();
+    return;
+  }
+
   if (hash === '#/' || hash === '#/home') {
     app.innerHTML = loadHome();
   } else if (hash === '#/ideas') {
@@ -80,8 +104,45 @@ function updateActiveNavLink(hash) {
 // Initialize app saat DOM siap
 document.addEventListener('DOMContentLoaded', () => {
   initHamburger();
+  // header blur on scroll
+  initHeaderBlur();
+  // init fade-in scroll animations
+  initFadeIn();
+  // init auth if available
+  if (window.auth && typeof window.auth.init === 'function') {
+    window.auth.init();
+  }
   handleRoute();
 });
 
 // Listen to hash changes
 window.addEventListener('hashchange', handleRoute);
+
+// Init IntersectionObserver to reveal elements with .fade-in
+function initFadeIn() {
+  if (!('IntersectionObserver' in window)) {
+    // Fallback: make all visible
+    document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      const el = entry.target;
+      if (entry.isIntersecting) {
+        const delay = el.getAttribute('data-delay');
+        if (delay) {
+          el.style.transitionDelay = `${parseInt(delay, 10)}ms`;
+        }
+        el.classList.add('visible');
+        obs.unobserve(el);
+      }
+    });
+  }, {
+    root: null,
+    rootMargin: '0px 0px -8% 0px',
+    threshold: 0.12
+  });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+}
